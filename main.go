@@ -1,17 +1,20 @@
 package main
 
 import (
-    "log"
+	"log"
 
-    "github.com/gofiber/fiber/v3"
+	"github.com/AnotherSekai/backend/router"
+	"github.com/gofiber/fiber/v3"
 )
 
 func main() {
-    app := fiber.New()
+	app := fiber.New()
 
-    app.Get("/", func (c fiber.Ctx) error {
-        return c.SendString("Hello, Sekai!")
-    })
+	app.Get("/", func(c fiber.Ctx) error {
+		return c.SendString("Hello, Sekai!")
+	})
 
-    log.Fatal(app.Listen(":9000"))
+	router.SetupRoutes(app)
+
+	log.Fatal(app.Listen(":9000"))
 }
